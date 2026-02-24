@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.kiro/
+.deepeval/
+vector_store/
+evaluation_results/
+*.egg-info/
+dist/
+build/
+.streamlit/
