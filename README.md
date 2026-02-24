@@ -35,7 +35,7 @@ User Query
 
 | Component | Technology |
 |-----------|-----------|
-| LLM | Google Gemini 2.0 Flash |
+| LLM | Google Gemini 2.5 Flash |
 | Embeddings | Gemini Embedding 001 |
 | Vector Store | FAISS |
 | Orchestration | LangChain |
