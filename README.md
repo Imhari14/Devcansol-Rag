@@ -75,7 +75,7 @@ Get a free API key from [Google AI Studio](https://aistudio.google.com/apikey).
 ### 5. Run the chatbot
 
 ```bash
-streamlit run frontend/streamlit_app.py
+streamlit run streamlit_app.py
 ```
 
 Enter your Google Gemini API key in the sidebar, upload documents, and start chatting. Use the Evaluation tab to generate QA pairs and run metrics.
