@@ -36,215 +36,96 @@ st.markdown(
     """
     <style>
     /* --- Global --- */
-    .block-container {
-        padding-top: 0.5rem;
-    }
-    header[data-testid="stHeader"] {
-        background: transparent;
-    }
-    .stMainBlockContainer {
-        padding-top: 2rem;
-    }
+    .block-container { padding-top: 0.5rem; }
+    header[data-testid="stHeader"] { background: transparent; }
+    .stMainBlockContainer { padding-top: 2rem; }
 
     /* --- Headers --- */
     .main-header {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 0.25rem;
-        letter-spacing: -0.02em;
-        text-align: center;
-        padding-right: 4rem;
+        font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem;
+        letter-spacing: -0.02em; text-align: center; padding-right: 4rem;
     }
     .sub-header {
-        font-size: 0.9rem;
-        color: #64748b;
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-        text-align: center;
-        padding-right: 4rem;
-    }
-    .sidebar-header {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.75rem;
+        font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;
+        text-align: center; padding-right: 4rem; opacity: 0.65;
     }
     .sidebar-section-title {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #475569;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.4rem;
+        font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.06em; margin-bottom: 0.4rem; opacity: 0.6;
     }
 
-    /* --- Status Cards (top bar) --- */
-    .stat-row {
-        display: flex;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-    }
+    /* --- Status Cards --- */
+    .stat-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
     .stat-card {
-        flex: 1;
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 0.85rem 1rem;
-        transition: box-shadow 0.2s ease;
+        flex: 1; border: 1px solid rgba(128,128,128,0.2); border-radius: 10px;
+        padding: 0.85rem 1rem; transition: box-shadow 0.2s ease;
+        background: rgba(128,128,128,0.06);
     }
-    .stat-card:hover {
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-    }
+    .stat-card:hover { box-shadow: 0 2px 8px rgba(128,128,128,0.1); }
     .stat-label {
-        font-size: 0.65rem;
-        font-weight: 600;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.2rem;
+        font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.08em; margin-bottom: 0.2rem; opacity: 0.5;
     }
-    .stat-value {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #0f172a;
-    }
-    .stat-value-sm {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #334155;
-        line-height: 1.4;
-    }
+    .stat-value { font-size: 1.35rem; font-weight: 700; }
+    .stat-value-sm { font-size: 0.85rem; font-weight: 600; line-height: 1.4; opacity: 0.8; }
 
     /* --- Citation Box --- */
     .citation-box {
-        background-color: #f8fafc;
-        border-left: 3px solid #6366f1;
-        padding: 0.6rem 0.85rem;
-        margin: 0.4rem 0;
-        font-size: 0.82rem;
-        color: #334155;
-        border-radius: 0 6px 6px 0;
-        line-height: 1.5;
+        background: rgba(128,128,128,0.06); border-left: 3px solid #6366f1;
+        padding: 0.6rem 0.85rem; margin: 0.4rem 0; font-size: 0.82rem;
+        border-radius: 0 6px 6px 0; line-height: 1.5; opacity: 0.85;
     }
 
     /* --- Token and Eval captions --- */
     div[data-testid="stChatMessage"] .stCaption p {
-        font-size: 0.72rem;
-        color: #94a3b8;
+        font-size: 0.72rem; opacity: 0.5;
         font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-        letter-spacing: 0.01em;
     }
 
     /* --- Eval metric cards --- */
     .eval-card {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 0.85rem 1rem;
-        text-align: center;
+        background: rgba(128,128,128,0.06); border: 1px solid rgba(128,128,128,0.2);
+        border-radius: 10px; padding: 0.85rem 1rem; text-align: center;
     }
     .eval-metric-name {
-        font-size: 0.65rem;
-        font-weight: 600;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.3rem;
+        font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.06em; margin-bottom: 0.3rem; opacity: 0.5;
     }
-    .eval-score {
-        font-size: 1.3rem;
-        font-weight: 700;
-    }
-    .eval-pass {
-        color: #16a34a;
-    }
-    .eval-fail {
-        color: #dc2626;
-    }
+    .eval-score { font-size: 1.3rem; font-weight: 700; }
+    .eval-pass { color: #22c55e; }
+    .eval-fail { color: #ef4444; }
     .eval-badge {
-        display: inline-block;
-        font-size: 0.6rem;
-        font-weight: 700;
-        padding: 0.15rem 0.45rem;
-        border-radius: 4px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-left: 0.3rem;
-        vertical-align: middle;
+        display: inline-block; font-size: 0.6rem; font-weight: 700;
+        padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase;
+        letter-spacing: 0.05em; margin-left: 0.3rem; vertical-align: middle;
     }
-    .badge-pass {
-        background-color: #dcfce7;
-        color: #166534;
-    }
-    .badge-fail {
-        background-color: #fee2e2;
-        color: #991b1b;
-    }
+    .badge-pass { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .badge-fail { background: rgba(239,68,68,0.15); color: #ef4444; }
 
     /* --- Chat styling --- */
-    div[data-testid="stChatMessage"] {
-        border-radius: 10px;
-        padding: 0.75rem 1rem;
-    }
-    .stChatInput > div {
-        border-radius: 10px;
-    }
-
-    /* --- Expander tweaks --- */
-    .streamlit-expanderHeader {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: #475569;
-    }
+    div[data-testid="stChatMessage"] { border-radius: 10px; padding: 0.75rem 1rem; }
+    .stChatInput > div { border-radius: 10px; }
 
     /* --- Eval detail section --- */
     .eval-detail-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.2rem;
-        margin-top: 0.6rem;
+        font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.06em; margin-bottom: 0.2rem; margin-top: 0.6rem; opacity: 0.5;
     }
     .eval-reason-box {
-        background-color: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-        padding: 0.6rem 0.85rem;
-        font-size: 0.8rem;
-        color: #475569;
-        line-height: 1.55;
-        margin-bottom: 0.5rem;
+        background: rgba(128,128,128,0.06); border: 1px solid rgba(128,128,128,0.2);
+        border-radius: 6px; padding: 0.6rem 0.85rem; font-size: 0.8rem;
+        line-height: 1.55; margin-bottom: 0.5rem; opacity: 0.85;
     }
     .eval-metric-header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 0.75rem;
-        margin-bottom: 0.25rem;
+        display: flex; align-items: center; gap: 0.5rem;
+        margin-top: 0.75rem; margin-bottom: 0.25rem;
     }
-    .eval-metric-title {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #0f172a;
-    }
+    .eval-metric-title { font-size: 0.85rem; font-weight: 600; }
 
-    /* --- Sidebar polish --- */
-    section[data-testid="stSidebar"] {
-        background-color: #fafbfc;
-    }
-    section[data-testid="stSidebar"] .main-header {
-        text-align: left;
-    }
-    section[data-testid="stSidebar"] .sub-header {
-        text-align: left;
-    }
-    section[data-testid="stSidebar"] .stDivider {
-        margin-top: 0.75rem;
-        margin-bottom: 0.75rem;
-    }
+    /* --- Sidebar --- */
+    section[data-testid="stSidebar"] .main-header { text-align: left; }
+    section[data-testid="stSidebar"] .sub-header { text-align: left; }
+    section[data-testid="stSidebar"] .stDivider { margin-top: 0.75rem; margin-bottom: 0.75rem; }
     </style>
     """,
     unsafe_allow_html=True,
