@@ -87,3 +87,12 @@ Enter your Google Gemini API key in the sidebar, upload documents, and start cha
 - **Answer Relevancy**: Is the answer relevant to the question asked?
 - **Answer Correctness** (GEval): Is the answer factually correct based on context?
 
+## Potential Improvements
+
+Given additional time, the following enhancements could be made:
+
+1. **Advanced RAG Agent with Tool Calling**: Upgrade from a fixed retrieval pipeline to an agentic architecture with tool-calling capabilities. This would enable the LLM to dynamically invoke external tools and knowledge bases through Model Context Protocol (MCP) servers, allowing the agent to extend beyond uploaded documents into live APIs, databases, and web search when the local context is insufficient.
+
+2. **RAG Memory for Contextual Personalization**: Integrate a persistent memory layer that enables the system to recall previous interactions, user preferences, and temporal context across sessions. This bridges the gap between static retrieval and personalized, long-term memory, allowing the chatbot to build on prior conversations, adapt responses to individual users, and maintain coherent multi-session dialogues.
+
+3. **Cloud Evaluation Dashboard**: Integrate the Confident AI platform for visual side-by-side experiment comparisons, regression testing across prompt/retrieval changes, and team collaboration on evaluation results. This would replace the in-app evaluation tab with a production-grade observability layer for continuous monitoring of RAG quality metrics.

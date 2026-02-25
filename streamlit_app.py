@@ -9,6 +9,9 @@ import json
 import logging
 import tempfile
 
+# Prevent DeepEval from falling back to OpenAI when no key is set
+os.environ.setdefault("OPENAI_API_KEY", "unused")
+
 import streamlit as st
 import pandas as pd
 
