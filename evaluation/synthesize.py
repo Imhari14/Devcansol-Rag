@@ -50,10 +50,16 @@ def generate_goldens_from_documents(
             temperature=0,
         )
     )
+    gemini_critic = GeminiModel(
+        model="gemini-2.5-flash",
+        api_key=get_api_key(),
+        temperature=0,
+    )
     goldens = synthesizer.generate_goldens_from_docs(
         document_paths=document_paths,
         context_construction_config=ContextConstructionConfig(
             embedder=GeminiEmbeddingModel(),
+            critic_model=gemini_critic,
         ),
     )
 

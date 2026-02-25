@@ -3,14 +3,10 @@ Streamlit frontend for the RAG Chatbot.
 Provides document upload, domain configuration, chat interface, and evaluation dashboard.
 """
 
-import sys
 import os
 import json
 import logging
 import tempfile
-
-# Prevent DeepEval from falling back to OpenAI when no key is set
-os.environ.setdefault("OPENAI_API_KEY", "unused")
 
 import streamlit as st
 import pandas as pd
@@ -150,8 +146,6 @@ if "doc_count" not in st.session_state:
     st.session_state.doc_count = 0
 if "eval_results" not in st.session_state:
     st.session_state.eval_results = None
-if "eval_running" not in st.session_state:
-    st.session_state.eval_running = False
 if "uploaded_file_paths" not in st.session_state:
     st.session_state.uploaded_file_paths = []
 if "cached_goldens" not in st.session_state:
@@ -662,6 +656,7 @@ with tab_eval:
                             document_paths=st.session_state.uploaded_file_paths,
                             context_construction_config=ContextConstructionConfig(
                                 embedder=GeminiEmbeddingModel(),
+                                critic_model=gemini_judge,
                             ),
                         )
 
@@ -732,7 +727,7 @@ with tab_eval:
                 max_value=1.0,
                 value=0.3,
                 step=0.05,
-                help="Minimum score for a metric to pass. 0.3 is realistic for retriever metrics with top_k=3.",
+                help="Minimum score for a metric to pass.",
             )
 
         run_eval_btn = st.button(
@@ -774,7 +769,6 @@ with tab_eval:
                 eval_start = time.time()
 
                 try:
-                    # Step 1: Create test cases
                     st.write(f"Creating test cases from {len(goldens)} QA pairs...")
                     test_cases = []
                     for i, golden in enumerate(goldens):
@@ -796,7 +790,6 @@ with tab_eval:
                     elapsed = time.time() - eval_start
                     st.write(f"All {len(test_cases)} test cases created ({elapsed:.0f}s elapsed)")
 
-                    # Step 2: Build metrics
                     metrics = []
                     if eval_type in ("retriever", "all"):
                         metrics.extend([
@@ -828,7 +821,6 @@ with tab_eval:
                         f"(est. {len(test_cases) * 15}-{len(test_cases) * 25}s)"
                     )
 
-                    # Step 3: Run evaluation
                     eval_results = evaluate(test_cases, metrics)
 
                     elapsed = time.time() - eval_start
@@ -839,7 +831,6 @@ with tab_eval:
                     )
                     logger.info("[frontend_eval] evaluation completed - duration=%.0fs", elapsed)
 
-                    # Display results
                     st.divider()
                     st.markdown("**Evaluation Results**")
 
