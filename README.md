@@ -4,24 +4,8 @@ A Retrieval-Augmented Generation chatbot that answers user queries based on uplo
 
 ## Architecture
 
-```
-User Query
-    |
-    v
-[Streamlit UI] --> [Domain Description] --> [Dynamic Prompt Builder (Gemini)]
-    |                                              |
-    v                                              v
-[Document Upload] --> [Chunking] --> [Gemini Embeddings] --> [FAISS Vector Store]
-    |
-    v
-[User Question] --> [Retriever (Similarity Search)] --> [Top-K Chunks]
-                                                            |
-                                                            v
-                                                    [Generator (Gemini)]
-                                                            |
-                                                            v
-                                                    [JSON Response: Answer + Citations]
-```
+<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/24e84ad3-c0dd-4fc7-b90c-1706bdedf982" />
+
 
 ### Components
 
