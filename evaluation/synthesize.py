@@ -60,6 +60,7 @@ def generate_goldens_from_documents(
         context_construction_config=ContextConstructionConfig(
             embedder=GeminiEmbeddingModel(),
             critic_model=gemini_critic,
+            max_contexts_per_document=2,
         ),
     )
 

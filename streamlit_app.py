@@ -10,6 +10,8 @@ import tempfile
 
 # Give DeepEval more time per LLM call (Gemini free tier can be slow)
 os.environ.setdefault("DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE", "300")
+# Throttle concurrent calls to avoid Gemini free tier rate limits
+os.environ.setdefault("DEEPEVAL_SYNTHESIZER_MAX_CONCURRENT", "3")
 
 import streamlit as st
 import pandas as pd
@@ -660,6 +662,7 @@ with tab_eval:
                             context_construction_config=ContextConstructionConfig(
                                 embedder=GeminiEmbeddingModel(),
                                 critic_model=gemini_judge,
+                                max_contexts_per_document=2,
                             ),
                         )
 
