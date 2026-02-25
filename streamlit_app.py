@@ -8,6 +8,9 @@ import json
 import logging
 import tempfile
 
+# Give DeepEval more time per LLM call (Gemini free tier can be slow)
+os.environ.setdefault("DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE", "300")
+
 import streamlit as st
 import pandas as pd
 
